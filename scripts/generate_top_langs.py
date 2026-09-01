@@ -15,6 +15,15 @@ USERNAME = os.environ.get("GITHUB_REPOSITORY_OWNER") or os.environ.get(
 )
 LANGS_COUNT = 20
 
+# Not useful as "most used languages" and long names clip in the card.
+EXCLUDED_LANGS = {
+    "Rich Text Format",
+    "Gettext Catalog",
+    "Diff",
+    "SVG",
+    "XML",
+}
+
 
 def graphql(query: str, variables: dict | None = None) -> dict:
     payload: dict = {"query": query}
@@ -71,6 +80,8 @@ def fetch_languages() -> list[tuple[str, str, int]]:
             if not edge or not edge.get("node"):
                 continue
             name = edge["node"]["name"]
+            if name in EXCLUDED_LANGS:
+                continue
             color = edge["node"].get("color") or "#8b949e"
             size = edge["size"]
             if name not in totals:
@@ -91,15 +102,20 @@ def fetch_languages() -> list[tuple[str, str, int]]:
     return ranked[:LANGS_COUNT]
 
 
+def display_name(name: str, max_len: int = 14) -> str:
+    if len(name) <= max_len:
+        return name
+    return name[: max_len - 1] + "…"
+
+
 def render(langs: list[tuple[str, str, int]]) -> str:
     total = sum(size for _, _, size in langs) or 1
-    width = 300
-    # header + progress bar + rows (2 columns)
+    width = 360
     rows = (len(langs) + 1) // 2
     height = 95 + rows * 24
     segments = []
     x = 25
-    bar_width = 250
+    bar_width = 310
     for name, color, size in langs:
         w = bar_width * (size / total)
         segments.append(
@@ -111,14 +127,15 @@ def render(langs: list[tuple[str, str, int]]) -> str:
     for i, (name, color, size) in enumerate(langs):
         col = i // ((len(langs) + 1) // 2)
         row = i % ((len(langs) + 1) // 2)
-        tx = 25 + col * 140
+        tx = 25 + col * 165
         ty = 45 + row * 24
         pct = 100.0 * size / total
+        label = f"{display_name(name)} {pct:.2f}%"
         items.append(
             f"""
       <g transform="translate({tx}, {ty})">
         <circle cx="5" cy="6" r="5" fill="{color}"/>
-        <text data-testid="lang-name" x="15" y="10" class="lang-name">{name} {pct:.2f}%</text>
+        <text data-testid="lang-name" x="15" y="10" class="lang-name">{label}</text>
       </g>"""
         )
 
@@ -140,7 +157,7 @@ def render(langs: list[tuple[str, str, int]]) -> str:
       fill: #58a6ff;
     }}
     .lang-name {{
-      font: 400 14px 'Segoe UI', Ubuntu, Sans-Serif;
+      font: 400 13px 'Segoe UI', Ubuntu, Sans-Serif;
       fill: #c9d1d9;
     }}
   </style>
