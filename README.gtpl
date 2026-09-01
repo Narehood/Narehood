@@ -39,24 +39,23 @@
 ### GitHub Stats
 
 <p align="left">
-  <img height="160" src="https://github-readme-stats.vercel.app/api?username=Narehood&show_icons=true&include_all_commits=true&count_private=true&theme=dark&hide_border=true&bg_color=0d1117&title_color=58a6ff&icon_color=58a6ff&text_color=c9d1d9" alt="Narehood's GitHub stats" />
-  <img height="160" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Narehood&layout=compact&theme=dark&hide_border=true&bg_color=0d1117&title_color=58a6ff&text_color=c9d1d9" alt="Top languages" />
+  <img height="160" src="https://github-stats-extended.vercel.app/api?username=Narehood&show_icons=true&include_all_commits=true&theme=dark&hide_border=true&bg_color=0d1117&title_color=58a6ff&icon_color=58a6ff&text_color=c9d1d9" alt="Narehood's GitHub stats" />
+  <img height="160" src="https://github-stats-extended.vercel.app/api/top-langs/?username=Narehood&layout=compact&theme=dark&hide_border=true&bg_color=0d1117&title_color=58a6ff&text_color=c9d1d9" alt="Top languages" />
 </p>
 
 ### 👷 Check out what I'm currently working on
-{{ range recentContributions 5 }}
-- [{{ .Repo.Name }}]({{ .Repo.URL }}){{ with .Repo.Description }} - {{ . }}{{ end }}
-{{- end }}
+- [Narehood/xenadmin](https://github.com/Narehood/xenadmin) - A Modern XCP-ng Center (Alpha)
+- [Narehood/Narehood-AI](https://github.com/Narehood/Narehood-AI) - Codex and AI skills
+- [Narehood/rdgen](https://github.com/Narehood/rdgen) - custom client generator for rustdesk
+- [Narehood/VM-Setup](https://github.com/Narehood/VM-Setup) - General Linux/XCP-ng VM setup scripts
+- [Narehood/Stitch-Revitalized-For-Roku](https://github.com/Narehood/Stitch-Revitalized-For-Roku) - A Twitch app for Roku
 
 ### 🌱 My latest projects
-{{ range recentRepos 5 }}
-- [{{ .Name }}]({{ .URL }}){{ with .Description }} - {{ . }}{{ end }}
-{{- end }}
-
-### 🔨 My recent Pull Requests
-{{ range recentPullRequests 5 }}
-- [{{ .Title }}]({{ .URL }}) on [{{ .Repo.Name }}]({{ .Repo.URL }})
-{{- end }}
+- [Narehood/xenadmin](https://github.com/Narehood/xenadmin) - A Modern XCP-ng Center (Alpha)
+- [Narehood/Narehood-AI](https://github.com/Narehood/Narehood-AI) - Codex and AI skills
+- [Narehood/rdgen](https://github.com/Narehood/rdgen) - custom client generator for rustdesk
+- [Narehood/VM-Setup](https://github.com/Narehood/VM-Setup) - General Linux/XCP-ng VM setup scripts
+- [Narehood/Docker-Prep](https://github.com/Narehood/Docker-Prep) - Docker install and group setup helper
 
 ### ⭐ Recent Stars
 {{ range recentStars 5 }}

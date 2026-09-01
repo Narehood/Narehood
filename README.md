@@ -39,37 +39,30 @@
 ### GitHub Stats
 
 <p align="left">
-  <img height="160" src="https://github-readme-stats.vercel.app/api?username=Narehood&show_icons=true&include_all_commits=true&count_private=true&theme=dark&hide_border=true&bg_color=0d1117&title_color=58a6ff&icon_color=58a6ff&text_color=c9d1d9" alt="Narehood's GitHub stats" />
-  <img height="160" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Narehood&layout=compact&theme=dark&hide_border=true&bg_color=0d1117&title_color=58a6ff&text_color=c9d1d9" alt="Top languages" />
+  <img height="160" src="https://github-stats-extended.vercel.app/api?username=Narehood&show_icons=true&include_all_commits=true&theme=dark&hide_border=true&bg_color=0d1117&title_color=58a6ff&icon_color=58a6ff&text_color=c9d1d9" alt="Narehood's GitHub stats" />
+  <img height="160" src="https://github-stats-extended.vercel.app/api/top-langs/?username=Narehood&layout=compact&theme=dark&hide_border=true&bg_color=0d1117&title_color=58a6ff&text_color=c9d1d9" alt="Top languages" />
 </p>
 
 ### 👷 Check out what I'm currently working on
-- [Narehood/chefskiss](https://github.com/Narehood/chefskiss)
 - [Narehood/xenadmin](https://github.com/Narehood/xenadmin) - A Modern XCP-ng Center (Alpha)
 - [Narehood/Narehood-AI](https://github.com/Narehood/Narehood-AI) - Codex and AI skills
-- [Narehood/t3code](https://github.com/Narehood/t3code)
 - [Narehood/rdgen](https://github.com/Narehood/rdgen) - custom client generator for rustdesk
+- [Narehood/VM-Setup](https://github.com/Narehood/VM-Setup) - General Linux/XCP-ng VM setup scripts
+- [Narehood/Stitch-Revitalized-For-Roku](https://github.com/Narehood/Stitch-Revitalized-For-Roku) - A Twitch app for Roku
 
 ### 🌱 My latest projects
 - [Narehood/xenadmin](https://github.com/Narehood/xenadmin) - A Modern XCP-ng Center (Alpha)
 - [Narehood/Narehood-AI](https://github.com/Narehood/Narehood-AI) - Codex and AI skills
-- [Narehood/t3code](https://github.com/Narehood/t3code)
 - [Narehood/rdgen](https://github.com/Narehood/rdgen) - custom client generator for rustdesk
-- [Narehood/VM-Setup](https://github.com/Narehood/VM-Setup) - Installs general packages. Some scripts are designed with XCP-NG in mind
-
-### 🔨 My recent Pull Requests
-- [Restore Android-safe AdMob pin before mobile build](https://github.com/Narehood/chefskiss/pull/380) on [Narehood/chefskiss](https://github.com/Narehood/chefskiss)
-- [Fix Chef attach sheet and restore global camera modes](https://github.com/Narehood/chefskiss/pull/379) on [Narehood/chefskiss](https://github.com/Narehood/chefskiss)
-- [fix(mobile): stabilize 3.2.1 Chef and kitchen flows](https://github.com/Narehood/chefskiss/pull/377) on [Narehood/chefskiss](https://github.com/Narehood/chefskiss)
-- [chore(web): update compatible dependencies for 3.2.1](https://github.com/Narehood/chefskiss/pull/378) on [Narehood/chefskiss](https://github.com/Narehood/chefskiss)
-- [feat(api): append Something else to Chef choice chips](https://github.com/Narehood/chefskiss/pull/366) on [Narehood/chefskiss](https://github.com/Narehood/chefskiss)
+- [Narehood/VM-Setup](https://github.com/Narehood/VM-Setup) - General Linux/XCP-ng VM setup scripts
+- [Narehood/Docker-Prep](https://github.com/Narehood/Docker-Prep) - Docker install and group setup helper
 
 ### ⭐ Recent Stars
 - [authgear/authgear-server](https://github.com/authgear/authgear-server) - Open source Auth0/Clerk/Firebase alternative
 - [ChrisTitusTech/titus-ai](https://github.com/ChrisTitusTech/titus-ai) - Codex and AI skills
-- [pingdotgg/t3code](https://github.com/pingdotgg/t3code)
 - [pingdotgg/uploadthing](https://github.com/pingdotgg/uploadthing) - File uploads for modern web devs
 - [bryangerlach/rdgen](https://github.com/bryangerlach/rdgen) - custom client generator for rustdesk
+- [ChrisTitusTech/linutil](https://github.com/ChrisTitusTech/linutil) - Chris Titus Tech's Linux Toolbox
 
 ### 📫 How to reach me:
 - Website : <https://narehood.net>
