@@ -83,17 +83,16 @@ jobs:
               count=1,
           )
           svg, n2 = re.subn(
-              r"(Total Commits\s*:)\s*\d+",
+              r"(Total Commits(?:\s*\([^)]+\))?\s*:)\s*\d+",
               rf"\1 {total}",
               svg,
-              count=1,
           )
-          if n1 + n2 == 0:
+          if n1 == 0:
               raise SystemExit("Failed to patch commit count in stats.svg")
 
           with open(path, "w", encoding="utf-8", newline="\n") as f:
               f.write(svg)
-          print(f"Patched commits to {total} (replacements={n1 + n2})")
+          print(f"Patched commits to {total} (value={n1}, labels={n2})")
           PY
 
       - name: Generate top languages card
