@@ -28,7 +28,7 @@ jobs:
           card: stats
           # Yearly GraphQL path (more accurate than include_all_commits REST search).
           # Private commits are patched in the next step.
-          options: username=${{ github.repository_owner }}&show_icons=true&theme=dark&hide_border=true&bg_color=0d1117&title_color=58a6ff&icon_color=58a6ff&text_color=c9d1d9
+          options: username=${{ github.repository_owner }}&show_icons=true&hide_rank=true&theme=dark&hide_border=true&bg_color=0d1117&title_color=58a6ff&icon_color=58a6ff&text_color=c9d1d9
           path: profile/stats.svg
           token: ${{ secrets.GH_PAT }}
 
@@ -102,6 +102,24 @@ jobs:
           options: username=${{ github.repository_owner }}&layout=compact&langs_count=10&theme=dark&hide_border=true&bg_color=0d1117&title_color=58a6ff&text_color=c9d1d9
           path: profile/top-langs.svg
           token: ${{ secrets.GH_PAT }}
+
+      - name: Enlarge top languages font
+        run: |
+          python3 << 'PY'
+          from pathlib import Path
+          path = Path("profile/top-langs.svg")
+          svg = path.read_text(encoding="utf-8")
+          svg2, n = __import__("re").subn(
+              r"(\.lang-name\s*\{\s*font:\s*400\s+)\d+px",
+              r"\g<1>14px",
+              svg,
+              count=1,
+          )
+          if n == 0:
+              raise SystemExit("Failed to enlarge lang-name font")
+          path.write_text(svg2, encoding="utf-8", newline="\n")
+          print("Bumped .lang-name font to 14px")
+          PY
 
       - name: Commit cards
         run: |
