@@ -58,11 +58,12 @@
 - [Narehood/Docker-Prep](https://github.com/Narehood/Docker-Prep) - Docker install and group setup helper
 
 ### ⭐ Recent Stars
-- [authgear/authgear-server](https://github.com/authgear/authgear-server) - Open source Auth0/Clerk/Firebase alternative
+
+- [authgear/authgear-server](https://github.com/authgear/authgear-server) - Open source Auth0/Clerk/Firebase alternative. Passkeys, SSO, MFA, passwordless, biometric login. Self-hosted or cloud. Enterprise-ready for SaaS &amp; mobile apps
 - [ChrisTitusTech/titus-ai](https://github.com/ChrisTitusTech/titus-ai) - Codex and AI skills
+- [pingdotgg/t3code](https://github.com/pingdotgg/t3code)
 - [pingdotgg/uploadthing](https://github.com/pingdotgg/uploadthing) - File uploads for modern web devs
 - [bryangerlach/rdgen](https://github.com/bryangerlach/rdgen) - custom client generator for rustdesk
-- [ChrisTitusTech/linutil](https://github.com/ChrisTitusTech/linutil) - Chris Titus Tech's Linux Toolbox
 
 ### 📫 How to reach me:
 - Website : <https://narehood.net>
