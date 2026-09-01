@@ -44,32 +44,24 @@
 </p>
 
 ### 👷 Check out what I'm currently working on
-- [Narehood/chefskiss](https://github.com/Narehood/chefskiss)
-- [Narehood/xenadmin](https://github.com/Narehood/xenadmin) - A Modern XCP-ng Center (Alpha)
-- [Narehood/Narehood-AI](https://github.com/Narehood/Narehood-AI) - Codex and AI skills
-- [Narehood/t3code](https://github.com/Narehood/t3code)
-- [Narehood/rdgen](https://github.com/Narehood/rdgen) - custom client generator for rustdesk
+{{ range recentContributions 5 }}
+- [{{ .Repo.Name }}]({{ .Repo.URL }}){{ with .Repo.Description }} - {{ . }}{{ end }}
+{{- end }}
 
 ### 🌱 My latest projects
-- [Narehood/xenadmin](https://github.com/Narehood/xenadmin) - A Modern XCP-ng Center (Alpha)
-- [Narehood/Narehood-AI](https://github.com/Narehood/Narehood-AI) - Codex and AI skills
-- [Narehood/t3code](https://github.com/Narehood/t3code)
-- [Narehood/rdgen](https://github.com/Narehood/rdgen) - custom client generator for rustdesk
-- [Narehood/VM-Setup](https://github.com/Narehood/VM-Setup) - Installs general packages. Some scripts are designed with XCP-NG in mind
+{{ range recentRepos 5 }}
+- [{{ .Name }}]({{ .URL }}){{ with .Description }} - {{ . }}{{ end }}
+{{- end }}
 
 ### 🔨 My recent Pull Requests
-- [Restore Android-safe AdMob pin before mobile build](https://github.com/Narehood/chefskiss/pull/380) on [Narehood/chefskiss](https://github.com/Narehood/chefskiss)
-- [Fix Chef attach sheet and restore global camera modes](https://github.com/Narehood/chefskiss/pull/379) on [Narehood/chefskiss](https://github.com/Narehood/chefskiss)
-- [fix(mobile): stabilize 3.2.1 Chef and kitchen flows](https://github.com/Narehood/chefskiss/pull/377) on [Narehood/chefskiss](https://github.com/Narehood/chefskiss)
-- [chore(web): update compatible dependencies for 3.2.1](https://github.com/Narehood/chefskiss/pull/378) on [Narehood/chefskiss](https://github.com/Narehood/chefskiss)
-- [feat(api): append Something else to Chef choice chips](https://github.com/Narehood/chefskiss/pull/366) on [Narehood/chefskiss](https://github.com/Narehood/chefskiss)
+{{ range recentPullRequests 5 }}
+- [{{ .Title }}]({{ .URL }}) on [{{ .Repo.Name }}]({{ .Repo.URL }})
+{{- end }}
 
 ### ⭐ Recent Stars
-- [authgear/authgear-server](https://github.com/authgear/authgear-server) - Open source Auth0/Clerk/Firebase alternative
-- [ChrisTitusTech/titus-ai](https://github.com/ChrisTitusTech/titus-ai) - Codex and AI skills
-- [pingdotgg/t3code](https://github.com/pingdotgg/t3code)
-- [pingdotgg/uploadthing](https://github.com/pingdotgg/uploadthing) - File uploads for modern web devs
-- [bryangerlach/rdgen](https://github.com/bryangerlach/rdgen) - custom client generator for rustdesk
+{{ range recentStars 5 }}
+- [{{ .Repo.Name }}]({{ .Repo.URL }}){{ with .Repo.Description }} - {{ . }}{{ end }}
+{{- end }}
 
 ### 📫 How to reach me:
 - Website : <https://narehood.net>

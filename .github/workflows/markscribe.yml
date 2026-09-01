@@ -1,0 +1,33 @@
+name: markscribe
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  markscribe:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Generate README
+        uses: muesli/readme-scribe@master
+        env:
+          # Needs a classic PAT (repo scope) named GH_PAT for full activity data.
+          # Falls back to the default Actions token if GH_PAT is not set.
+          GITHUB_TOKEN: ${{ secrets.GH_PAT || github.token }}
+        with:
+          template: "README.gtpl"
+          writeTo: "README.md"
+
+      - name: Commit README
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "markscribe: update README.md"
