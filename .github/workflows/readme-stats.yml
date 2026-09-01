@@ -10,6 +10,10 @@ on:
     paths:
       - ".github/workflows/readme-stats.yml"
 
+concurrency:
+  group: profile-readme-updates
+  cancel-in-progress: false
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -24,7 +28,7 @@ jobs:
           card: stats
           options: username=${{ github.repository_owner }}&show_icons=true&include_all_commits=true&theme=dark&hide_border=true&bg_color=0d1117&title_color=58a6ff&icon_color=58a6ff&text_color=c9d1d9
           path: profile/stats.svg
-          # Classic PAT with repo + read:user scopes includes private repo stats.
+          # PAT with repo (+ read:user) scopes includes private repo stats.
           token: ${{ secrets.GH_PAT }}
 
       - name: Generate top languages card
@@ -36,7 +40,14 @@ jobs:
           token: ${{ secrets.GH_PAT }}
 
       - name: Commit cards
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "chore: update README stats cards"
-          file_pattern: profile/*.svg
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add profile/*.svg
+          if git diff --staged --quiet; then
+            echo "No stats card changes"
+            exit 0
+          fi
+          git commit -m "chore: update README stats cards"
+          git pull --rebase origin main
+          git push
