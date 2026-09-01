@@ -13,7 +13,7 @@ TOKEN = os.environ["GH_TOKEN"]
 USERNAME = os.environ.get("GITHUB_REPOSITORY_OWNER") or os.environ.get(
     "USERNAME", "Narehood"
 )
-LANGS_COUNT = 10
+LANGS_COUNT = 20
 
 
 def graphql(query: str, variables: dict | None = None) -> dict:
@@ -47,7 +47,7 @@ def fetch_languages() -> list[tuple[str, str, int]]:
                 name
                 isFork
                 isPrivate
-                languages(first: 10, orderBy: { field: SIZE, direction: DESC }) {
+                languages(first: 20, orderBy: { field: SIZE, direction: DESC }) {
                   edges {
                     size
                     node { name color }

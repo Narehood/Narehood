@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Patch stats.svg with private yearly + lifetime commit totals."""
+"""Patch stats.svg with private-aware commit and PR totals."""
 
 from __future__ import annotations
 
@@ -7,11 +7,15 @@ import json
 import os
 import re
 import urllib.request
+import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from pathlib import Path
 
 PATH = Path("profile/stats.svg")
 TOKEN = os.environ["GH_TOKEN"]
+USERNAME = os.environ.get("GITHUB_REPOSITORY_OWNER") or os.environ.get(
+    "USERNAME", "Narehood"
+)
 
 
 def graphql(query: str, variables: dict | None = None) -> dict:
@@ -80,6 +84,19 @@ def lifetime_commits() -> int:
     return total
 
 
+def total_prs() -> int:
+    """PRs across owned repos, including private repos and forks."""
+    data = graphql(
+        """
+        query($q: String!) {
+          search(query: $q, type: ISSUE) { issueCount }
+        }
+        """,
+        {"q": f"user:{USERNAME} type:pr"},
+    )
+    return data["search"]["issueCount"]
+
+
 def bump_height(svg: str, delta: int = 25) -> str:
     svg = re.sub(
         r'(\sheight=")(\d+)(")',
@@ -107,7 +124,6 @@ def ensure_lifetime_row(svg: str, lifetime: int) -> str:
 
     svg = bump_height(svg, 25)
 
-    # Shift rows that currently sit at/after the old PRs slot.
     for old, new in ((100, 125), (75, 100), (50, 75)):
         svg = svg.replace(
             f'<g transform="translate(0, {old})">',
@@ -125,7 +141,6 @@ def ensure_lifetime_row(svg: str, lifetime: int) -> str:
     </g>
   </g>"""
 
-    # After shifting, PRs are at y=75. Insert lifetime row just before that group.
     anchor = '<g transform="translate(0, 75)">'
     idx = svg.find(anchor)
     if idx < 0:
@@ -133,29 +148,34 @@ def ensure_lifetime_row(svg: str, lifetime: int) -> str:
     return svg[:idx] + row + svg[idx:]
 
 
-def patch(yearly: int, lifetime: int) -> None:
-    svg = PATH.read_text(encoding="utf-8")
-
-    svg, n1 = re.subn(
-        r'(data-testid="commits"\s*>)\s*\d+',
-        rf"\g<1>{yearly}",
+def patch_number(svg: str, test_id: str, value: int) -> str:
+    svg, n = re.subn(
+        rf'(data-testid="{test_id}"\s*>)\s*[\d,]+',
+        rf"\g<1>{value}",
         svg,
         count=1,
     )
-    if n1 == 0:
-        raise SystemExit("Failed to patch yearly commit count")
+    if n == 0:
+        raise SystemExit(f"Failed to patch {test_id}")
+    return svg
 
+
+def patch(yearly: int, lifetime: int, prs: int) -> None:
+    svg = PATH.read_text(encoding="utf-8")
+
+    svg = patch_number(svg, "commits", yearly)
     svg = re.sub(
-        r"(Total Commits(?:\s*\([^)]+\))?\s*:)\s*\d+",
+        r"(Total Commits(?:\s*\([^)]+\))?\s*:)\s*[\d,]+",
         rf"\1 {yearly}",
         svg,
         count=1,
     )
 
     svg = ensure_lifetime_row(svg, lifetime)
+    svg = patch_number(svg, "prs", prs)
 
-    # Keep accessibility description in sync.
-    if "Lifetime Commits:" in svg.split("<desc", 1)[1].split("</desc>", 1)[0]:
+    desc = svg.split("<desc", 1)[1].split("</desc>", 1)[0]
+    if "Lifetime Commits:" in desc:
         svg = re.sub(
             r"Lifetime Commits:\s*\d+",
             f"Lifetime Commits: {lifetime}",
@@ -168,18 +188,16 @@ def patch(yearly: int, lifetime: int) -> None:
             f", Lifetime Commits: {lifetime}</desc>",
             1,
         )
+    svg = re.sub(r"Total PRs:\s*[\d,]+", f"Total PRs: {prs}", svg, count=1)
 
     PATH.write_text(svg, encoding="utf-8", newline="\n")
-
-    # Fail closed if the SVG is no longer valid XML (GitHub shows "Invalid image source").
-    import xml.etree.ElementTree as ET
-
     ET.parse(PATH)
-    print(f"Patched yearly={yearly} lifetime={lifetime}")
+    print(f"Patched yearly={yearly} lifetime={lifetime} prs={prs}")
 
 
 if __name__ == "__main__":
     y = yearly_commits()
     life = lifetime_commits()
-    print(f"yearly={y} lifetime={life}")
-    patch(y, life)
+    prs = total_prs()
+    print(f"yearly={y} lifetime={life} prs={prs}")
+    patch(y, life, prs)
