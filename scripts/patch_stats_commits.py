@@ -115,7 +115,7 @@ def ensure_lifetime_row(svg: str, lifetime: int) -> str:
             1,
         )
 
-    row = f"""  </g><g transform="translate(0, 50)">
+    row = f"""<g transform="translate(0, 50)">
     <g class="stagger" style="animation-delay: 675ms" transform="translate(25, 0)">
     <svg data-testid="icon" class="icon" viewBox="0 0 16 16" version="1.1" width="16" height="16">
       <path fill-rule="evenodd" d="M1.643 3.143L.427 1.927A.25.25 0 000 2.104V5.75c0 .138.112.25.25.25h3.646a.25.25 0 00.177-.427L2.715 4.215a6.5 6.5 0 11-1.18 4.458.75.75 0 10-1.493.154 8.001 8.001 0 101.6-5.684zM7.75 4a.75.75 0 01.75.75v2.992l2.028.812a.75.75 0 01-.557 1.392l-2.5-1A.75.75 0 017 8.25v-3.5A.75.75 0 017.75 4z"/>
@@ -123,21 +123,14 @@ def ensure_lifetime_row(svg: str, lifetime: int) -> str:
       <text class="stat  bold" x="25" y="12.5">Lifetime Commits:</text>
       <text class="stat  bold" x="224.01" y="12.5" data-testid="lifetime-commits">{lifetime}</text>
     </g>
-"""
+  </g>"""
 
     # After shifting, PRs are at y=75. Insert lifetime row just before that group.
     anchor = '<g transform="translate(0, 75)">'
     idx = svg.find(anchor)
     if idx < 0:
         raise SystemExit("could not find PRs row anchor for lifetime insert")
-    # Walk back to include the preceding "</g>" that closes yearly commits.
-    # We insert after the yearly commits outer </g>.
-    # Pattern around commits block end: </g>\n  </g><g transform="translate(0, 75)">
-    insert_at = svg.rfind("</g>", 0, idx)
-    if insert_at < 0:
-        raise SystemExit("could not find yearly commits close tag")
-    insert_at += len("</g>")
-    return svg[:insert_at] + "\n" + row + svg[insert_at:]
+    return svg[:idx] + row + svg[idx:]
 
 
 def patch(yearly: int, lifetime: int) -> None:
@@ -177,6 +170,11 @@ def patch(yearly: int, lifetime: int) -> None:
         )
 
     PATH.write_text(svg, encoding="utf-8", newline="\n")
+
+    # Fail closed if the SVG is no longer valid XML (GitHub shows "Invalid image source").
+    import xml.etree.ElementTree as ET
+
+    ET.parse(PATH)
     print(f"Patched yearly={yearly} lifetime={lifetime}")
 
 

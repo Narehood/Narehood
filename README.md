@@ -11,10 +11,10 @@
 <table>
   <tr>
     <td valign="top">
-      <img src="./profile/stats.svg" alt="Stats" />
+      <img src="https://raw.githubusercontent.com/Narehood/Narehood/main/profile/stats.svg" alt="Stats" />
     </td>
     <td valign="top">
-      <img src="./profile/top-langs.svg" alt="Most used languages" />
+      <img src="https://raw.githubusercontent.com/Narehood/Narehood/main/profile/top-langs.svg" alt="Most used languages" />
     </td>
   </tr>
 </table>
