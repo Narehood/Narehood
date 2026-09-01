@@ -26,16 +26,81 @@ jobs:
         uses: stats-organization/github-readme-stats-action@v2
         with:
           card: stats
-          options: username=${{ github.repository_owner }}&show_icons=true&include_all_commits=true&theme=dark&hide_border=true&bg_color=0d1117&title_color=58a6ff&icon_color=58a6ff&text_color=c9d1d9
+          # Yearly GraphQL path (more accurate than include_all_commits REST search).
+          # Private commits are patched in the next step.
+          options: username=${{ github.repository_owner }}&show_icons=true&theme=dark&hide_border=true&bg_color=0d1117&title_color=58a6ff&icon_color=58a6ff&text_color=c9d1d9
           path: profile/stats.svg
-          # PAT with repo (+ read:user) scopes includes private repo stats.
           token: ${{ secrets.GH_PAT }}
+
+      - name: Include private commits in stats card
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          python3 << 'PY'
+          import json, os, re, urllib.request
+
+          query = {
+              "query": """
+              query {
+                viewer {
+                  contributionsCollection {
+                    totalCommitContributions
+                    restrictedContributionsCount
+                  }
+                }
+              }
+              """
+          }
+          req = urllib.request.Request(
+              "https://api.github.com/graphql",
+              data=json.dumps(query).encode(),
+              headers={
+                  "Authorization": f"Bearer {os.environ['GH_TOKEN']}",
+                  "Content-Type": "application/json",
+                  "User-Agent": "narehood-readme-stats",
+              },
+          )
+          with urllib.request.urlopen(req) as resp:
+              payload = json.load(resp)
+
+          cc = payload["data"]["viewer"]["contributionsCollection"]
+          total = cc["totalCommitContributions"] + cc["restrictedContributionsCount"]
+          print(
+              f"public/year={cc['totalCommitContributions']} "
+              f"private={cc['restrictedContributionsCount']} "
+              f"total={total}"
+          )
+
+          path = "profile/stats.svg"
+          with open(path, encoding="utf-8") as f:
+              svg = f.read()
+
+          # Replace visible commits value and accessibility description.
+          svg, n1 = re.subn(
+              r'(data-testid="commits"\s*>)\s*\d+',
+              rf"\g<1>{total}",
+              svg,
+              count=1,
+          )
+          svg, n2 = re.subn(
+              r"(Total Commits\s*:)\s*\d+",
+              rf"\1 {total}",
+              svg,
+              count=1,
+          )
+          if n1 + n2 == 0:
+              raise SystemExit("Failed to patch commit count in stats.svg")
+
+          with open(path, "w", encoding="utf-8", newline="\n") as f:
+              f.write(svg)
+          print(f"Patched commits to {total} (replacements={n1 + n2})")
+          PY
 
       - name: Generate top languages card
         uses: stats-organization/github-readme-stats-action@v2
         with:
           card: top-langs
-          options: username=${{ github.repository_owner }}&layout=compact&theme=dark&hide_border=true&bg_color=0d1117&title_color=58a6ff&text_color=c9d1d9
+          options: username=${{ github.repository_owner }}&layout=compact&langs_count=10&theme=dark&hide_border=true&bg_color=0d1117&title_color=58a6ff&text_color=c9d1d9
           path: profile/top-langs.svg
           token: ${{ secrets.GH_PAT }}
 
