@@ -9,6 +9,8 @@ on:
       - main
     paths:
       - ".github/workflows/readme-stats.yml"
+      - "scripts/patch_stats_commits.py"
+      - "scripts/generate_top_langs.py"
 
 concurrency:
   group: profile-readme-updates
@@ -26,100 +28,20 @@ jobs:
         uses: stats-organization/github-readme-stats-action@v2
         with:
           card: stats
-          # Yearly GraphQL path (more accurate than include_all_commits REST search).
-          # Private commits are patched in the next step.
           options: username=${{ github.repository_owner }}&show_icons=true&hide_rank=true&custom_title=Stats&theme=dark&hide_border=true&bg_color=0d1117&title_color=58a6ff&icon_color=58a6ff&text_color=c9d1d9
           path: profile/stats.svg
           token: ${{ secrets.GH_PAT }}
 
-      - name: Include private commits in stats card
+      - name: Patch yearly + lifetime commits
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
-        run: |
-          python3 << 'PY'
-          import json, os, re, urllib.request
+        run: python3 scripts/patch_stats_commits.py
 
-          query = {
-              "query": """
-              query {
-                viewer {
-                  contributionsCollection {
-                    totalCommitContributions
-                    restrictedContributionsCount
-                  }
-                }
-              }
-              """
-          }
-          req = urllib.request.Request(
-              "https://api.github.com/graphql",
-              data=json.dumps(query).encode(),
-              headers={
-                  "Authorization": f"Bearer {os.environ['GH_TOKEN']}",
-                  "Content-Type": "application/json",
-                  "User-Agent": "narehood-readme-stats",
-              },
-          )
-          with urllib.request.urlopen(req) as resp:
-              payload = json.load(resp)
-
-          cc = payload["data"]["viewer"]["contributionsCollection"]
-          total = cc["totalCommitContributions"] + cc["restrictedContributionsCount"]
-          print(
-              f"public/year={cc['totalCommitContributions']} "
-              f"private={cc['restrictedContributionsCount']} "
-              f"total={total}"
-          )
-
-          path = "profile/stats.svg"
-          with open(path, encoding="utf-8") as f:
-              svg = f.read()
-
-          # Replace visible commits value and accessibility description.
-          svg, n1 = re.subn(
-              r'(data-testid="commits"\s*>)\s*\d+',
-              rf"\g<1>{total}",
-              svg,
-              count=1,
-          )
-          svg, n2 = re.subn(
-              r"(Total Commits(?:\s*\([^)]+\))?\s*:)\s*\d+",
-              rf"\1 {total}",
-              svg,
-          )
-          if n1 == 0:
-              raise SystemExit("Failed to patch commit count in stats.svg")
-
-          with open(path, "w", encoding="utf-8", newline="\n") as f:
-              f.write(svg)
-          print(f"Patched commits to {total} (value={n1}, labels={n2})")
-          PY
-
-      - name: Generate top languages card
-        uses: stats-organization/github-readme-stats-action@v2
-        with:
-          card: top-langs
-          options: username=${{ github.repository_owner }}&layout=compact&langs_count=10&theme=dark&hide_border=true&bg_color=0d1117&title_color=58a6ff&text_color=c9d1d9
-          path: profile/top-langs.svg
-          token: ${{ secrets.GH_PAT }}
-
-      - name: Enlarge top languages font
-        run: |
-          python3 << 'PY'
-          from pathlib import Path
-          path = Path("profile/top-langs.svg")
-          svg = path.read_text(encoding="utf-8")
-          svg2, n = __import__("re").subn(
-              r"(\.lang-name\s*\{\s*font:\s*400\s+)\d+px",
-              r"\g<1>14px",
-              svg,
-              count=1,
-          )
-          if n == 0:
-              raise SystemExit("Failed to enlarge lang-name font")
-          path.write_text(svg2, encoding="utf-8", newline="\n")
-          print("Bumped .lang-name font to 14px")
-          PY
+      - name: Generate top languages (includes forks)
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+          GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
+        run: python3 scripts/generate_top_langs.py
 
       - name: Commit cards
         run: |
