@@ -39,8 +39,8 @@
 ### GitHub Stats
 
 <p align="left">
-  <img height="160" src="https://github-stats-extended.vercel.app/api?username=Narehood&show_icons=true&include_all_commits=true&theme=dark&hide_border=true&bg_color=0d1117&title_color=58a6ff&icon_color=58a6ff&text_color=c9d1d9" alt="Narehood's GitHub stats" />
-  <img height="160" src="https://github-stats-extended.vercel.app/api/top-langs/?username=Narehood&layout=compact&theme=dark&hide_border=true&bg_color=0d1117&title_color=58a6ff&text_color=c9d1d9" alt="Top languages" />
+  <img height="160" src="./profile/stats.svg" alt="Narehood's GitHub stats" />
+  <img height="160" src="./profile/top-langs.svg" alt="Top languages" />
 </p>
 
 ### 👷 Check out what I'm currently working on
@@ -65,4 +65,3 @@
 ### 📫 How to reach me:
 - Website : <https://narehood.net>
 - Twitter : <https://x.com/michaelnarehood>
-- GitHub  : <https://github.com/Narehood>
