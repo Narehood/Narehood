@@ -36,52 +36,52 @@
       <rect x="25" y="0" width="310" height="8" fill="white" rx="5"/>
     </mask>
     <g mask="url(#rect-mask)">
-      <rect height="8" x="25.00" width="216.53" fill="#3178c6"/><rect height="8" x="241.53" width="27.78" fill="#00ADD8"/><rect height="8" x="269.31" width="23.99" fill="#7355dd"/><rect height="8" x="293.30" width="9.77" fill="#e34c26"/><rect height="8" x="303.08" width="7.01" fill="#00B4AB"/><rect height="8" x="310.08" width="3.99" fill="#438eff"/><rect height="8" x="314.08" width="3.30" fill="#f1e05a"/><rect height="8" x="317.38" width="3.27" fill="#89e051"/><rect height="8" x="320.65" width="2.76" fill="#fcb32c"/><rect height="8" x="323.41" width="2.58" fill="#3572A5"/><rect height="8" x="325.98" width="2.33" fill="#663399"/><rect height="8" x="328.31" width="1.83" fill="#4F5D95"/><rect height="8" x="330.14" width="0.97" fill="#555555"/><rect height="8" x="331.11" width="0.86" fill="#ff5a03"/><rect height="8" x="331.98" width="0.78" fill="#c6538c"/><rect height="8" x="332.76" width="0.69" fill="#662D91"/><rect height="8" x="333.45" width="0.56" fill="#8b949e"/><rect height="8" x="334.02" width="0.40" fill="#F05138"/><rect height="8" x="334.42" width="0.29" fill="#5886E1"/><rect height="8" x="334.71" width="0.29" fill="#dea584"/>
+      <rect height="8" x="25.00" width="216.87" fill="#3178c6"/><rect height="8" x="241.87" width="27.56" fill="#00ADD8"/><rect height="8" x="269.43" width="24.05" fill="#7355dd"/><rect height="8" x="293.47" width="9.71" fill="#e34c26"/><rect height="8" x="303.19" width="6.95" fill="#00B4AB"/><rect height="8" x="310.14" width="3.96" fill="#438eff"/><rect height="8" x="314.10" width="3.31" fill="#f1e05a"/><rect height="8" x="317.40" width="3.25" fill="#89e051"/><rect height="8" x="320.65" width="2.74" fill="#fcb32c"/><rect height="8" x="323.39" width="2.56" fill="#3572A5"/><rect height="8" x="325.95" width="2.35" fill="#663399"/><rect height="8" x="328.30" width="1.82" fill="#4F5D95"/><rect height="8" x="330.11" width="0.96" fill="#555555"/><rect height="8" x="331.07" width="0.92" fill="#ff5a03"/><rect height="8" x="332.00" width="0.78" fill="#c6538c"/><rect height="8" x="332.77" width="0.69" fill="#662D91"/><rect height="8" x="333.46" width="0.56" fill="#8b949e"/><rect height="8" x="334.02" width="0.40" fill="#F05138"/><rect height="8" x="334.42" width="0.29" fill="#dea584"/><rect height="8" x="334.71" width="0.29" fill="#5886E1"/>
     </g>
     
       <g transform="translate(25, 45)">
         <circle cx="5" cy="6" r="5" fill="#3178c6"/>
-        <text data-testid="lang-name" x="15" y="10" class="lang-name">TypeScript 69.85%</text>
+        <text data-testid="lang-name" x="15" y="10" class="lang-name">TypeScript 69.96%</text>
       </g>
       <g transform="translate(25, 69)">
         <circle cx="5" cy="6" r="5" fill="#00ADD8"/>
-        <text data-testid="lang-name" x="15" y="10" class="lang-name">Go 8.96%</text>
+        <text data-testid="lang-name" x="15" y="10" class="lang-name">Go 8.89%</text>
       </g>
       <g transform="translate(25, 93)">
         <circle cx="5" cy="6" r="5" fill="#7355dd"/>
-        <text data-testid="lang-name" x="15" y="10" class="lang-name">C# 7.74%</text>
+        <text data-testid="lang-name" x="15" y="10" class="lang-name">C# 7.76%</text>
       </g>
       <g transform="translate(25, 117)">
         <circle cx="5" cy="6" r="5" fill="#e34c26"/>
-        <text data-testid="lang-name" x="15" y="10" class="lang-name">HTML 3.15%</text>
+        <text data-testid="lang-name" x="15" y="10" class="lang-name">HTML 3.13%</text>
       </g>
       <g transform="translate(25, 141)">
         <circle cx="5" cy="6" r="5" fill="#00B4AB"/>
-        <text data-testid="lang-name" x="15" y="10" class="lang-name">Dart 2.26%</text>
+        <text data-testid="lang-name" x="15" y="10" class="lang-name">Dart 2.24%</text>
       </g>
       <g transform="translate(25, 165)">
         <circle cx="5" cy="6" r="5" fill="#438eff"/>
-        <text data-testid="lang-name" x="15" y="10" class="lang-name">Objective-C 1.29%</text>
+        <text data-testid="lang-name" x="15" y="10" class="lang-name">Objective-C 1.28%</text>
       </g>
       <g transform="translate(25, 189)">
         <circle cx="5" cy="6" r="5" fill="#f1e05a"/>
-        <text data-testid="lang-name" x="15" y="10" class="lang-name">JavaScript 1.06%</text>
+        <text data-testid="lang-name" x="15" y="10" class="lang-name">JavaScript 1.07%</text>
       </g>
       <g transform="translate(25, 213)">
         <circle cx="5" cy="6" r="5" fill="#89e051"/>
-        <text data-testid="lang-name" x="15" y="10" class="lang-name">Shell 1.06%</text>
+        <text data-testid="lang-name" x="15" y="10" class="lang-name">Shell 1.05%</text>
       </g>
       <g transform="translate(25, 237)">
         <circle cx="5" cy="6" r="5" fill="#fcb32c"/>
-        <text data-testid="lang-name" x="15" y="10" class="lang-name">MDX 0.89%</text>
+        <text data-testid="lang-name" x="15" y="10" class="lang-name">MDX 0.88%</text>
       </g>
       <g transform="translate(25, 261)">
         <circle cx="5" cy="6" r="5" fill="#3572A5"/>
-        <text data-testid="lang-name" x="15" y="10" class="lang-name">Python 0.83%</text>
+        <text data-testid="lang-name" x="15" y="10" class="lang-name">Python 0.82%</text>
       </g>
       <g transform="translate(190, 45)">
         <circle cx="5" cy="6" r="5" fill="#663399"/>
-        <text data-testid="lang-name" x="15" y="10" class="lang-name">CSS 0.75%</text>
+        <text data-testid="lang-name" x="15" y="10" class="lang-name">CSS 0.76%</text>
       </g>
       <g transform="translate(190, 69)">
         <circle cx="5" cy="6" r="5" fill="#4F5D95"/>
@@ -93,7 +93,7 @@
       </g>
       <g transform="translate(190, 117)">
         <circle cx="5" cy="6" r="5" fill="#ff5a03"/>
-        <text data-testid="lang-name" x="15" y="10" class="lang-name">Astro 0.28%</text>
+        <text data-testid="lang-name" x="15" y="10" class="lang-name">Astro 0.30%</text>
       </g>
       <g transform="translate(190, 141)">
         <circle cx="5" cy="6" r="5" fill="#c6538c"/>
@@ -112,12 +112,12 @@
         <text data-testid="lang-name" x="15" y="10" class="lang-name">Swift 0.13%</text>
       </g>
       <g transform="translate(190, 237)">
-        <circle cx="5" cy="6" r="5" fill="#5886E1"/>
-        <text data-testid="lang-name" x="15" y="10" class="lang-name">CUE 0.09%</text>
-      </g>
-      <g transform="translate(190, 261)">
         <circle cx="5" cy="6" r="5" fill="#dea584"/>
         <text data-testid="lang-name" x="15" y="10" class="lang-name">Rust 0.09%</text>
+      </g>
+      <g transform="translate(190, 261)">
+        <circle cx="5" cy="6" r="5" fill="#5886E1"/>
+        <text data-testid="lang-name" x="15" y="10" class="lang-name">CUE 0.09%</text>
       </g>
   </svg>
 </svg>
