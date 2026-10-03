@@ -35,8 +35,8 @@
 
 ### ⭐ Recent Stars
 
+- [WerWolv/ImHex](https://github.com/WerWolv/ImHex) - 🔍 A Hex Editor for Reverse Engineers, Programmers and people who value their retinas when working at 3 AM.
 - [FreePBX/sng_freepbx_debian_install](https://github.com/FreePBX/sng_freepbx_debian_install) - FreePBX 17 Installation Script
 - [authgear/authgear-server](https://github.com/authgear/authgear-server) - Open source Auth0/Keycloak alternative. Passkeys, SSO, MFA, passwordless, biometric login. Self-hosted or cloud. Enterprise-ready for SaaS &amp; mobile apps
 - [ChrisTitusTech/titus-ai](https://github.com/ChrisTitusTech/titus-ai) - Codex and AI skills
 - [pingdotgg/t3code](https://github.com/pingdotgg/t3code)
-- [pingdotgg/uploadthing](https://github.com/pingdotgg/uploadthing) - File uploads for modern web devs
