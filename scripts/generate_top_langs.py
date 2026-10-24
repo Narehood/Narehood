@@ -45,15 +45,20 @@ def graphql(query: str, variables: dict | None = None) -> dict:
     return data["data"]
 
 
+# Personal account plus orgs whose repos should count toward top languages.
+INCLUDED_OWNERS = {USERNAME.lower(), "qutzl"}
+
+
 def fetch_languages() -> list[tuple[str, str, int]]:
     """Return [(name, color, bytes), ...] sorted by bytes desc."""
     data = graphql(
         """
         query($login: String!) {
           user(login: $login) {
-            repositories(ownerAffiliations: OWNER, first: 100) {
+            repositories(ownerAffiliations: [OWNER, ORGANIZATION_MEMBER], first: 100) {
               nodes {
                 name
+                owner { login }
                 isFork
                 isPrivate
                 languages(first: 20, orderBy: { field: SIZE, direction: DESC }) {
@@ -74,6 +79,8 @@ def fetch_languages() -> list[tuple[str, str, int]]:
     fork_hits = []
     for repo in data["user"]["repositories"]["nodes"]:
         if not repo:
+            continue
+        if repo["owner"]["login"].lower() not in INCLUDED_OWNERS:
             continue
         edges = (repo.get("languages") or {}).get("edges") or []
         for edge in edges:
