@@ -51,11 +51,11 @@ INCLUDED_OWNERS = {USERNAME.lower(), "qutzl"}
 
 def fetch_languages() -> list[tuple[str, str, int]]:
     """Return [(name, color, bytes), ...] sorted by bytes desc."""
-    data = graphql(
-        """
-        query($login: String!) {
+    query = """
+        query($login: String!, $after: String) {
           user(login: $login) {
-            repositories(ownerAffiliations: [OWNER, ORGANIZATION_MEMBER], first: 100) {
+            repositories(ownerAffiliations: [OWNER, ORGANIZATION_MEMBER], first: 100, after: $after) {
+              pageInfo { hasNextPage endCursor }
               nodes {
                 name
                 owner { login }
@@ -71,13 +71,19 @@ def fetch_languages() -> list[tuple[str, str, int]]:
             }
           }
         }
-        """,
-        {"login": USERNAME},
-    )
+        """
+    repos: list = []
+    after = None
+    while True:
+        page = graphql(query, {"login": USERNAME, "after": after})["user"]["repositories"]
+        repos.extend(page["nodes"])
+        if not page["pageInfo"]["hasNextPage"]:
+            break
+        after = page["pageInfo"]["endCursor"]
 
     totals: dict[str, list] = {}
     fork_hits = []
-    for repo in data["user"]["repositories"]["nodes"]:
+    for repo in repos:
         if not repo:
             continue
         if repo["owner"]["login"].lower() not in INCLUDED_OWNERS:
