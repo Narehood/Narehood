@@ -36,16 +36,16 @@
       <rect x="25" y="0" width="310" height="8" fill="white" rx="5"/>
     </mask>
     <g mask="url(#rect-mask)">
-      <rect height="8" x="25.00" width="234.70" fill="#3178c6"/><rect height="8" x="259.70" width="24.79" fill="#00ADD8"/><rect height="8" x="284.50" width="18.39" fill="#7355dd"/><rect height="8" x="302.89" width="6.81" fill="#e34c26"/><rect height="8" x="309.69" width="6.17" fill="#f1e05a"/><rect height="8" x="315.86" width="4.14" fill="#fcb32c"/><rect height="8" x="320.00" width="2.76" fill="#438eff"/><rect height="8" x="322.76" width="2.23" fill="#89e051"/><rect height="8" x="324.99" width="2.08" fill="#3572A5"/><rect height="8" x="327.07" width="1.76" fill="#663399"/><rect height="8" x="328.83" width="1.48" fill="#662D91"/><rect height="8" x="330.31" width="1.27" fill="#4F5D95"/><rect height="8" x="331.58" width="0.68" fill="#555555"/><rect height="8" x="332.25" width="0.65" fill="#ff5a03"/><rect height="8" x="332.90" width="0.54" fill="#c6538c"/><rect height="8" x="333.44" width="0.39" fill="#8b949e"/><rect height="8" x="333.84" width="0.33" fill="#A97BFF"/><rect height="8" x="334.16" width="0.32" fill="#F05138"/><rect height="8" x="334.48" width="0.32" fill="#dea584"/><rect height="8" x="334.80" width="0.20" fill="#5886E1"/>
+      <rect height="8" x="25.00" width="234.64" fill="#3178c6"/><rect height="8" x="259.64" width="24.86" fill="#00ADD8"/><rect height="8" x="284.50" width="18.38" fill="#7355dd"/><rect height="8" x="302.89" width="6.80" fill="#e34c26"/><rect height="8" x="309.69" width="6.18" fill="#f1e05a"/><rect height="8" x="315.87" width="4.14" fill="#fcb32c"/><rect height="8" x="320.00" width="2.76" fill="#438eff"/><rect height="8" x="322.77" width="2.23" fill="#89e051"/><rect height="8" x="324.99" width="2.08" fill="#3572A5"/><rect height="8" x="327.08" width="1.76" fill="#663399"/><rect height="8" x="328.83" width="1.48" fill="#662D91"/><rect height="8" x="330.31" width="1.27" fill="#4F5D95"/><rect height="8" x="331.58" width="0.68" fill="#555555"/><rect height="8" x="332.25" width="0.65" fill="#ff5a03"/><rect height="8" x="332.90" width="0.54" fill="#c6538c"/><rect height="8" x="333.45" width="0.39" fill="#8b949e"/><rect height="8" x="333.84" width="0.33" fill="#A97BFF"/><rect height="8" x="334.16" width="0.32" fill="#F05138"/><rect height="8" x="334.48" width="0.32" fill="#dea584"/><rect height="8" x="334.80" width="0.20" fill="#5886E1"/>
     </g>
     
       <g transform="translate(25, 45)">
         <circle cx="5" cy="6" r="5" fill="#3178c6"/>
-        <text data-testid="lang-name" x="15" y="10" class="lang-name">TypeScript 75.71%</text>
+        <text data-testid="lang-name" x="15" y="10" class="lang-name">TypeScript 75.69%</text>
       </g>
       <g transform="translate(25, 69)">
         <circle cx="5" cy="6" r="5" fill="#00ADD8"/>
-        <text data-testid="lang-name" x="15" y="10" class="lang-name">Go 8.00%</text>
+        <text data-testid="lang-name" x="15" y="10" class="lang-name">Go 8.02%</text>
       </g>
       <g transform="translate(25, 93)">
         <circle cx="5" cy="6" r="5" fill="#7355dd"/>
@@ -53,7 +53,7 @@
       </g>
       <g transform="translate(25, 117)">
         <circle cx="5" cy="6" r="5" fill="#e34c26"/>
-        <text data-testid="lang-name" x="15" y="10" class="lang-name">HTML 2.20%</text>
+        <text data-testid="lang-name" x="15" y="10" class="lang-name">HTML 2.19%</text>
       </g>
       <g transform="translate(25, 141)">
         <circle cx="5" cy="6" r="5" fill="#f1e05a"/>
